@@ -293,6 +293,9 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .sec::before,.sec::after,.sec-sm::before,.sec-sm::after{content:'';position:absolute;left:0;right:0;height:90px;pointer-events:none;z-index:4}
 .sec::before,.sec-sm::before{top:0;background:linear-gradient(to bottom,var(--surface) 0%,transparent 100%)}
 .sec::after,.sec-sm::after{bottom:0;background:linear-gradient(to top,var(--surface) 0%,transparent 100%)}
+#cd-section{background:#D0E8CC}
+#cd-section::before{background:linear-gradient(to bottom,#D0E8CC 0%,transparent 100%)}
+#cd-section::after{background:linear-gradient(to top,#D0E8CC 0%,transparent 100%)}
 /* secciones oscuras: dissolve con bg claro */
 #regalos::before{background:linear-gradient(to bottom,var(--bg),transparent)}
 #regalos::after{background:linear-gradient(to top,var(--bg),transparent)}
@@ -422,7 +425,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
   </section>
 
   <!-- CUENTA REGRESIVA -->
-  <section class="sec-sm rv" style="text-align:center;background:var(--surface)">
+  <section id="cd-section" class="sec-sm rv" style="text-align:center">
     <h2 class="heading-sm">Cuenta Regresiva</h2>
     <div class="card" style="max-width:380px;margin:0 auto">
       <div class="cd-row">
