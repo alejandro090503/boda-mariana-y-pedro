@@ -99,11 +99,21 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 @keyframes scrollbounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
 
 /* ── INVITATION PHOTO ── */
-#inv-photo-wrap{position:relative;margin-top:32px;border-radius:6px;overflow:hidden;border:1px solid var(--border);max-width:340px;margin-left:auto;margin-right:auto;box-shadow:0 10px 48px rgba(90,30,44,.22),0 2px 10px rgba(90,30,44,.12),0 0 0 1px rgba(90,30,44,.06)}
+#inv-photo-wrap{position:relative;margin-top:32px;border-radius:6px;overflow:hidden;border:none;max-width:340px;margin-left:auto;margin-right:auto;box-shadow:0 14px 56px rgba(90,30,44,.26),0 3px 12px rgba(90,30,44,.14),0 0 0 1px rgba(107,36,52,.25)}
 #inv-photo-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(108deg,transparent 38%,rgba(250,244,238,.15) 50%,transparent 62%);background-size:250% 100%;animation:invShimmer 7s ease-in-out infinite;pointer-events:none;z-index:2}
 @keyframes invShimmer{0%,100%{background-position:220% 0}48%{background-position:-220% 0}}
 #inv-photo{width:100%;display:block;object-fit:cover;aspect-ratio:4/3;transform-origin:center;animation:invKenBurns 12s ease-in-out infinite alternate}
 @keyframes invKenBurns{0%{transform:scale(1) translate(0%,0%)}100%{transform:scale(1.08) translate(-1.2%,-.6%)}}
+/* Frame overlay */
+.inv-frame{position:absolute;inset:0;z-index:3;pointer-events:none}
+.inv-frame::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 52%,rgba(8,2,5,.42) 100%)}
+.inv-frame-border{position:absolute;inset:11px;border:1px solid rgba(246,238,224,.48);box-shadow:inset 0 0 18px rgba(246,238,224,.05)}
+.inv-frame-border::before{content:'';position:absolute;inset:-6px;border:1px solid rgba(246,238,224,.18)}
+.inv-fc{position:absolute;width:20px;height:20px}
+.inv-fc--tl{top:7px;left:7px;border-top:1.5px solid rgba(246,238,224,.82);border-left:1.5px solid rgba(246,238,224,.82)}
+.inv-fc--tr{top:7px;right:7px;border-top:1.5px solid rgba(246,238,224,.82);border-right:1.5px solid rgba(246,238,224,.82)}
+.inv-fc--bl{bottom:7px;left:7px;border-bottom:1.5px solid rgba(246,238,224,.82);border-left:1.5px solid rgba(246,238,224,.82)}
+.inv-fc--br{bottom:7px;right:7px;border-bottom:1.5px solid rgba(246,238,224,.82);border-right:1.5px solid rgba(246,238,224,.82)}
 @media(prefers-reduced-motion:reduce){#inv-photo{animation:none}#inv-photo-wrap::after{animation:none}}
 
 /* ── HERO ── */
@@ -400,6 +410,13 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
     </p>
     <div id="inv-photo-wrap">
       <img id="inv-photo" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778710861331-2.jpg" alt="Mariana y Pedro">
+      <div class="inv-frame" aria-hidden="true">
+        <div class="inv-frame-border"></div>
+        <span class="inv-fc inv-fc--tl"></span>
+        <span class="inv-fc inv-fc--tr"></span>
+        <span class="inv-fc inv-fc--bl"></span>
+        <span class="inv-fc inv-fc--br"></span>
+      </div>
     </div>
   </section>
 
@@ -441,7 +458,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
         <span class="fam-role-lbl">Familia de la Novia</span>
         <span class="fam-name">Pedro López<br>de la Torre</span>
         <div class="fam-and"><div class="fam-and-line"></div><span class="fam-and-txt">y</span><div class="fam-and-line"></div></div>
-        <span class="fam-name">Maricela Medrano<br>Morales</span>
+        <span class="fam-name" style="font-size:17px">Maricela Medrano<br>Morales</span>
         <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:13px;color:var(--gold);margin-top:8px">Padres de la novia</p>
       </div>
       <div class="fam-card">
@@ -898,7 +915,7 @@ function initMain(){
     var m=Math.floor((diff%3600000)/60000);
     var s=Math.floor((diff%60000)/1000);
     var ids=['Dias','Horas','Mins','Secs'];
-    var vals=[String(d).padStart(3,'0'),String(h).padStart(2,'0'),String(m).padStart(2,'0'),String(s).padStart(2,'0')];
+    var vals=[String(d).padStart(2,'0'),String(h).padStart(2,'0'),String(m).padStart(2,'0'),String(s).padStart(2,'0')];
     ids.forEach(function(id,i){
       var el=document.getElementById('cd'+id);
       if(!el)return;
