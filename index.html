@@ -121,7 +121,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .hero-content{position:relative;z-index:2;text-align:center;padding:0 32px}
 .hero-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:17px;letter-spacing:.2em;text-transform:uppercase;color:#EAC5C5;display:block;margin-bottom:20px;text-shadow:0 1px 10px rgba(0,0,0,.7)}
 .hero-bride,.hero-groom{font-family:'Great Vibes',cursive;font-size:clamp(68px,21vw,94px);color:#FAF4EE;line-height:1;display:block;text-shadow:0 2px 20px rgba(0,0,0,.4),0 1px 6px rgba(0,0,0,.3)}
-.hero-amp{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:38px;color:#EAC5C5;display:block;margin:.12em 0;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+.hero-amp{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:38px;color:#EAC5C5;display:block;margin:.22em 0 .30em;text-shadow:0 1px 10px rgba(0,0,0,.6)}
 .hero-date{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:21px;letter-spacing:4px;color:#EAC5C5;margin-top:22px;display:block;text-shadow:0 1px 10px rgba(0,0,0,.7)}
 
 /* ── CARD ── */
@@ -377,7 +377,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
     <div class="hero-content">
       <span class="hero-tag rv">Tonalá, Jalisco · 2026</span>
       <span class="hero-bride rv">Mariana</span>
-      <span class="hero-amp rv">y</span>
+      <span class="hero-amp rv">&amp;</span>
       <span class="hero-groom rv">Pedro</span>
       <span class="hero-date rv">Sábado · 11 de Julio</span>
     </div>
@@ -844,33 +844,34 @@ function initEnvelope(){
 })();
 
 /* ── PARTICLES ── */
-function launchPetals(){
+function launchSparks(){
   var container=document.getElementById('petals');
-  var colors=['#8A3A52','#9E7474','#5A1E2C','#D4A8A8','#F6EEE0'];
-  for(var i=0;i<22;i++){
-    (function(idx){
-      setTimeout(function(){
-        var p=document.createElement('div');
-        p.className='petal';
-        var size=4+Math.random()*7;
-        var color=colors[Math.floor(Math.random()*colors.length)];
-        p.style.cssText='left:'+Math.random()*100+'%;width:'+size+'px;height:'+size+'px;background:'+color+';border-radius:50%;opacity:0';
-        container.appendChild(p);
-        gsap.fromTo(p,
-          {opacity:0,y:-20,x:0,rotation:Math.random()*360},
-          {opacity:.65,y:window.innerHeight+60,x:(Math.random()-.5)*120,rotation:Math.random()*720,
-           duration:5+Math.random()*4,ease:'none',
-           onComplete:function(){p.remove();}}
-        );
-      },idx*300+Math.random()*400);
-    })(i);
+  if(!container)return;
+  var colors=['#C8A96E','#D4B483','#BF9A64','#C4A0A0','#D4A8A8','#E8C9A0'];
+  function spawnOne(){
+    var p=document.createElement('div');
+    p.className='petal';
+    var size=1.5+Math.random()*2.5;
+    var color=colors[Math.floor(Math.random()*colors.length)];
+    var startY=window.innerHeight*(0.25+Math.random()*0.7);
+    var rise=70+Math.random()*130;
+    var driftX=(Math.random()-.5)*90;
+    var dur=6+Math.random()*5;
+    p.style.cssText='left:'+Math.random()*100+'%;top:'+startY+'px;width:'+size+'px;height:'+size+'px;background:'+color+';border-radius:50%;box-shadow:0 0 '+(size*2.5)+'px '+color+',0 0 '+(size*5)+'px rgba(200,169,110,.35);opacity:0';
+    container.appendChild(p);
+    var tl=gsap.timeline({onComplete:function(){p.remove();}});
+    tl.to(p,{opacity:.7+Math.random()*.25,y:-rise*.3,x:driftX*.35,duration:dur*.28,ease:'power1.out'})
+      .to(p,{opacity:.35+Math.random()*.3,y:-rise*.6,x:driftX*.7,duration:dur*.3,ease:'none'})
+      .to(p,{opacity:0,y:-rise,x:driftX,duration:dur*.42,ease:'power1.in'});
   }
+  for(var i=0;i<20;i++){setTimeout(spawnOne,i*280+Math.random()*350);}
+  setInterval(function(){if(document.getElementById('petals'))spawnOne();},1100);
 }
 
 /* ── MAIN ── */
 function initMain(){
   window.scrollTo(0,0);
-  launchPetals();
+  launchSparks();
 
   /* Photo float */
   var invWrap=document.getElementById('inv-photo-wrap');
@@ -920,7 +921,7 @@ function initMain(){
 
   /* Reveal animations */
   gsap.utils.toArray('.rv').forEach(function(el){
-    gsap.fromTo(el,{opacity:0,y:28},{opacity:1,y:0,duration:.85,ease:'power2.out',
+    gsap.fromTo(el,{opacity:0},{opacity:1,duration:.75,ease:'power2.out',
       scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});
   });
 
