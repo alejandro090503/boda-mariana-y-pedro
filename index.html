@@ -147,15 +147,42 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .btn-cal:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 .btn-cal svg{width:13px;height:13px;fill:currentColor}
 
-/* ── ITINERARIO ── */
-.itin-list{display:flex;flex-direction:column;gap:0;margin-top:24px;position:relative}
-.itin-list::before{content:'';position:absolute;left:50%;transform:translateX(-50%);top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--border),transparent)}
-.itin-item{display:flex;flex-direction:column;align-items:center;text-align:center;padding:22px 16px 10px;position:relative;z-index:1}
-.itin-dot{width:8px;height:8px;background:var(--gold);transform:rotate(45deg);border-radius:1px;margin-bottom:14px;box-shadow:0 0 0 4px rgba(158,116,116,.12),0 0 14px rgba(158,116,116,.3)}
-.itin-dot.green{background:var(--sage);box-shadow:0 0 0 4px rgba(125,155,118,.12),0 0 14px rgba(125,155,118,.3)}
-.itin-time{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;letter-spacing:3px;color:var(--dark);line-height:1;margin-bottom:6px}
-.itin-ev{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;letter-spacing:.3px;color:var(--dark);opacity:.85;font-weight:400}
-.itin-item:last-child{padding-bottom:0}
+/* ── ITINERARIO V3 — Centered Glowing Timeline ── */
+#siti{overflow:visible;padding-left:24px;padding-right:24px}
+.itv3{position:relative;display:flex;flex-direction:column;align-items:center;padding:10px 0 10px;margin-top:24px}
+.itv3-track{position:absolute;left:50%;transform:translateX(-50%);top:0;bottom:0;width:1px;z-index:0;background:linear-gradient(to bottom,transparent 0%,rgba(139,58,80,.35) 10%,rgba(125,155,118,.25) 45%,rgba(139,58,80,.30) 80%,transparent 100%)}
+.itv3-glow{position:absolute;left:50%;transform:translateX(-50%);top:0;width:5px;height:110px;background:linear-gradient(to bottom,transparent,rgba(139,58,80,.55) 20%,rgba(139,58,80,.90) 50%,rgba(139,58,80,.55) 80%,transparent);filter:blur(3px);border-radius:6px;z-index:1;pointer-events:none}
+.itv3-item{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:30px 16px 4px;width:100%}
+.itv3-gem{width:9px;height:9px;background:linear-gradient(135deg,#D4A8A8 30%,#5A1E2C);transform:rotate(45deg);border-radius:2px;box-shadow:0 0 0 4px rgba(139,58,80,.12),0 0 18px rgba(139,58,80,.45);margin-bottom:18px;flex-shrink:0}
+.itv3-gem-sage{background:linear-gradient(135deg,#9DB89A 30%,#3D5A3A);box-shadow:0 0 0 4px rgba(125,155,118,.14),0 0 18px rgba(125,155,118,.45)}
+.itv3-gem-mid{background:linear-gradient(135deg,#C4A0A0 30%,#8A3A52);box-shadow:0 0 0 4px rgba(139,58,80,.10),0 0 18px rgba(158,116,116,.38)}
+.itv3-time{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;letter-spacing:8px;color:var(--dark);line-height:1;margin-bottom:6px;text-indent:8px}
+.itv3-ev{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:rgba(42,16,24,.55);letter-spacing:3px;text-transform:uppercase;line-height:1.5;text-indent:3px}
+.itv3-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:var(--gold);opacity:.75;letter-spacing:1px;margin-top:4px;line-height:1.4}
+.itv3-item:last-child{padding-bottom:10px}
+
+/* ── GALERÍA / WHEEL ── */
+.wheel-stage{position:relative;width:100%;height:min(480px,108vw);max-width:480px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+.wheel{position:relative;width:min(420px,92vw);height:min(420px,92vw);border-radius:50%}
+.wheel-spoke{position:absolute;inset:-2px;border-radius:50%;border:1px solid rgba(139,58,80,.22)}
+.wheel-spoke--inner{inset:min(90px,18%);border-style:dashed;opacity:.42}
+.wheel-item{position:absolute;--r:min(185px,40vw);--angle:calc(var(--i)*(360deg/12));left:50%;top:50%;width:min(170px,36vw);height:min(220px,47vw);margin-left:calc(min(170px,36vw)/-2);margin-top:calc(min(220px,47vw)/-2);transform:rotate(var(--angle)) translateY(calc(-1*var(--r))) rotate(calc(-1*var(--angle)));border-radius:6px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.2),0 1px 4px rgba(0,0,0,.1)}
+.wheel-item-inner{position:relative;width:100%;height:100%;cursor:zoom-in}
+.wheel-item-inner img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .6s ease}
+.wheel-item-inner:hover img{transform:scale(1.06)}
+.wheel-hub{position:absolute;width:clamp(44px,10vw,58px);height:clamp(44px,10vw,58px);color:var(--gold);opacity:.45}
+#wheel-spark-layer{position:absolute;inset:0;pointer-events:none;z-index:10;overflow:visible}
+.wheel-spark{position:absolute;pointer-events:none;transform-origin:center center;will-change:transform,opacity;filter:drop-shadow(0 0 4px rgba(212,168,168,.85))}
+.album-qr{margin:36px auto 0;max-width:340px;text-align:center}
+.album-qr-img{width:min(180px,52vw);height:auto;border-radius:8px;border:1px solid var(--border);margin:14px auto;display:block}
+.album-qr-txt{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--text);opacity:.8;line-height:1.75}
+
+/* ── LIGHTBOX ── */
+#lightbox{position:fixed;inset:0;z-index:9990;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(20,8,14,.9);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0;cursor:zoom-out}
+#lightbox.is-open{display:flex}
+#lightbox-img{max-width:min(94vw,900px);max-height:min(86vh,900px);width:auto;height:auto;object-fit:contain;border-radius:10px;box-shadow:0 24px 80px rgba(0,0,0,.6);opacity:0;transform:scale(.88)}
+#lightbox-close{position:absolute;top:18px;right:18px;width:46px;height:46px;border:1px solid rgba(212,168,168,.45);background:rgba(20,8,14,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:50%;color:#F6EEE0;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s}
+#lightbox-close:hover{background:rgba(139,58,80,.7)}
 
 /* ── DRESS CODE ── */
 .dc-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--text);text-align:center;line-height:1.75;margin-bottom:24px;font-weight:400}
@@ -431,19 +458,49 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
     </div>
   </section>
 
-  <!-- ITINERARIO -->
-  <section class="sec rv" style="text-align:center">
-    <span class="eyebrow">Programa del Día</span>
-    <h2 class="heading-sm">Itinerario</h2>
-    <div class="orn" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
-    <div class="itin-list">
-      <div class="itin-item rv"><div class="itin-dot"></div><div class="itin-time">5:00 p.m.</div><div class="itin-ev">Ceremonia Religiosa</div></div>
-      <div class="itin-item rv"><div class="itin-dot green"></div><div class="itin-time">7:00 p.m.</div><div class="itin-ev">Recepción y Bienvenida</div></div>
-      <div class="itin-item rv"><div class="itin-dot"></div><div class="itin-time">8:00 p.m.</div><div class="itin-ev">Cena</div></div>
-      <div class="itin-item rv"><div class="itin-dot green"></div><div class="itin-time">9:00 p.m.</div><div class="itin-ev">Show de Magia</div></div>
-      <div class="itin-item rv"><div class="itin-dot"></div><div class="itin-time">10:00 p.m.</div><div class="itin-ev">Primer Baile</div></div>
-      <div class="itin-item rv"><div class="itin-dot green"></div><div class="itin-time">10:15 p.m.</div><div class="itin-ev">Baile con los Papás</div></div>
-      <div class="itin-item rv"><div class="itin-dot"></div><div class="itin-time">12:00 a.m.</div><div class="itin-ev">Final de la Fiesta</div></div>
+  <!-- ITINERARIO V3 -->
+  <section id="siti" class="sec" style="text-align:center">
+    <span class="eyebrow rv">Programa del Día</span>
+    <h2 class="heading-sm rv">Itinerario</h2>
+    <div class="orn rv" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
+    <div class="itv3">
+      <div class="itv3-track"></div>
+      <div class="itv3-glow" id="itvGlow"></div>
+      <div class="itv3-item">
+        <div class="itv3-gem"></div>
+        <div class="itv3-time">5:00 p.m.</div>
+        <div class="itv3-ev">Ceremonia Religiosa</div>
+      </div>
+      <div class="itv3-item">
+        <div class="itv3-gem itv3-gem-sage"></div>
+        <div class="itv3-time">7:00 p.m.</div>
+        <div class="itv3-ev">Recepción y Bienvenida</div>
+      </div>
+      <div class="itv3-item">
+        <div class="itv3-gem itv3-gem-mid"></div>
+        <div class="itv3-time">8:00 p.m.</div>
+        <div class="itv3-ev">Cena</div>
+      </div>
+      <div class="itv3-item">
+        <div class="itv3-gem itv3-gem-sage"></div>
+        <div class="itv3-time">9:00 p.m.</div>
+        <div class="itv3-ev">Show de Magia</div>
+      </div>
+      <div class="itv3-item">
+        <div class="itv3-gem"></div>
+        <div class="itv3-time">10:00 p.m.</div>
+        <div class="itv3-ev">Primer Baile</div>
+      </div>
+      <div class="itv3-item">
+        <div class="itv3-gem itv3-gem-mid"></div>
+        <div class="itv3-time">10:15 p.m.</div>
+        <div class="itv3-ev">Baile con los Papás</div>
+      </div>
+      <div class="itv3-item">
+        <div class="itv3-gem itv3-gem-sage"></div>
+        <div class="itv3-time">12:00 a.m.</div>
+        <div class="itv3-ev">Final de la Fiesta</div>
+      </div>
     </div>
   </section>
 
@@ -535,6 +592,30 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
     </div>
   </section>
 
+  <!-- ÁLBUM -->
+  <section id="salbum" class="sec" style="text-align:center">
+    <span class="eyebrow rv">Nuestros Momentos</span>
+    <h2 class="heading-sm rv">Álbum</h2>
+    <div class="orn rv" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
+    <div class="wheel-stage">
+      <div id="wheel-spark-layer" aria-hidden="true"></div>
+      <div class="wheel" id="wheel">
+        <span class="wheel-spoke" aria-hidden="true"></span>
+        <span class="wheel-spoke wheel-spoke--inner" aria-hidden="true"></span>
+        <div class="wheel-item" style="--i:0"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778705444229-5.jpg" alt="Mariana y Pedro" loading="lazy"></div></div>
+        <div class="wheel-item" style="--i:6"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778710861331-2.jpg" alt="Mariana y Pedro" loading="lazy"></div></div>
+      </div>
+      <div class="wheel-hub" aria-hidden="true">
+        <svg viewBox="0 0 60 60" fill="none"><g stroke="currentColor" stroke-width=".8"><circle cx="30" cy="30" r="18" opacity=".4"/><circle cx="30" cy="30" r="10"/><circle cx="30" cy="30" r="3" fill="currentColor"/><path d="M30 14L30 20M30 40L30 46M14 30L20 30M40 30L46 30" opacity=".55"/></g></svg>
+      </div>
+    </div>
+    <div class="album-qr rv">
+      <p class="album-qr-txt">Escanea el código para ver<br>y compartir tus fotos del día</p>
+      <img class="album-qr-img" src="qr-album.png" alt="QR álbum compartido" onerror="this.style.display='none'">
+      <p style="font-family:'Italiana',serif;font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);opacity:.7;margin-top:6px">@elysium.invitaciones</p>
+    </div>
+  </section>
+
   <!-- RSVP -->
   <section class="sec rv" style="text-align:center;background:var(--surface)">
     <span class="eyebrow">Confirmación</span>
@@ -589,6 +670,11 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 </button>
 <audio id="bgAudio" loop preload="auto"><source src="audio.mp3" type="audio/mpeg"></audio>
 <div id="env-flash"></div>
+
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada" aria-hidden="true">
+  <img id="lightbox-img" src="" alt="">
+  <button id="lightbox-close" aria-label="Cerrar">&#x2715;</button>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
@@ -684,6 +770,8 @@ function launchPetals(){
 function initMain(){
   window.scrollTo(0,0);
   launchPetals();
+  initItinerary();
+  initWheel();
 
   /* Countdown — Tonalá usa CST UTC-6, sin DST desde 2023 */
   var target=new Date('2026-07-11T23:00:00Z');
@@ -782,6 +870,113 @@ function initMain(){
     }
     window.open('https://wa.me/523781196994?text='+encodeURIComponent(msg),'_blank');
   };
+}
+
+/* ── ITINERARIO GLOW ── */
+function initItinerary(){
+  var container=document.querySelector('.itv3');
+  var glow=document.getElementById('itvGlow');
+  if(!container||!glow)return;
+  ScrollTrigger.create({
+    trigger:container,
+    start:'top 82%',
+    end:'bottom 28%',
+    scrub:1.4,
+    onUpdate:function(self){
+      var trackH=container.offsetHeight;
+      gsap.set(glow,{top:self.progress*(trackH-110)});
+    }
+  });
+  document.querySelectorAll('.itv3-gem').forEach(function(gem,i){
+    gsap.fromTo(gem,
+      {scale:0,opacity:0},
+      {scale:1,opacity:1,duration:.5,ease:'back.out(2.2)',delay:i*.07,
+       scrollTrigger:{trigger:gem,start:'top 90%',toggleActions:'play none none none'}}
+    );
+  });
+}
+
+/* ── WHEEL + LIGHTBOX ── */
+function initWheel(){
+  var wheel=document.getElementById('wheel');
+  var sparkLayer=document.getElementById('wheel-spark-layer');
+  if(!wheel)return;
+
+  ScrollTrigger.create({
+    trigger:'#salbum',
+    start:'top bottom',
+    end:'bottom top',
+    scrub:1.8,
+    onUpdate:function(self){
+      var deg=self.progress*360;
+      gsap.set(wheel,{rotation:deg});
+      document.querySelectorAll('.wheel-item-inner').forEach(function(inner){
+        gsap.set(inner,{rotation:-deg});
+      });
+    }
+  });
+
+  function spawnSpark(){
+    if(!sparkLayer)return;
+    var sp=document.createElement('div');
+    sp.className='wheel-spark';
+    var angle=Math.random()*Math.PI*2;
+    var dist=80+Math.random()*100;
+    var sz=3+Math.random()*5;
+    var colors=['rgba(212,168,168,.9)','rgba(139,58,80,.8)','rgba(125,155,118,.8)','rgba(246,238,224,.85)'];
+    var color=colors[Math.floor(Math.random()*colors.length)];
+    sp.style.cssText='width:'+sz+'px;height:'+sz+'px;background:'+color+';border-radius:50%;position:absolute;left:50%;top:50%;margin-left:'+(sz/-2)+'px;margin-top:'+(sz/-2)+'px';
+    sparkLayer.appendChild(sp);
+    gsap.fromTo(sp,
+      {opacity:1,x:0,y:0,scale:1},
+      {opacity:0,x:Math.cos(angle)*dist,y:Math.sin(angle)*dist,scale:.2,
+       duration:.65+Math.random()*.45,ease:'power2.out',
+       onComplete:function(){if(sp.parentNode)sp.parentNode.removeChild(sp);}}
+    );
+  }
+
+  ScrollTrigger.create({
+    trigger:'#salbum',
+    start:'top bottom',
+    end:'bottom top',
+    onUpdate:function(self){
+      var vel=Math.abs(self.getVelocity());
+      if(vel>200){
+        var n=Math.min(4,Math.floor(vel/200));
+        for(var i=0;i<n;i++)spawnSpark();
+      }
+    }
+  });
+
+  var lb=document.getElementById('lightbox');
+  var lbImg=document.getElementById('lightbox-img');
+  var lbClose=document.getElementById('lightbox-close');
+  if(!lb)return;
+
+  document.querySelectorAll('.wheel-item-inner').forEach(function(inner){
+    inner.addEventListener('click',function(){
+      var img=inner.querySelector('img');
+      if(!img)return;
+      lbImg.src=img.src;
+      lbImg.alt=img.alt||'';
+      lb.style.display='flex';
+      lb.removeAttribute('aria-hidden');
+      gsap.killTweensOf([lb,lbImg]);
+      gsap.fromTo(lb,{opacity:0},{opacity:1,duration:.28,ease:'power2.out'});
+      gsap.fromTo(lbImg,{opacity:0,scale:.88},{opacity:1,scale:1,duration:.32,ease:'back.out(1.4)',delay:.06});
+    });
+  });
+
+  function closeLb(){
+    gsap.to(lb,{opacity:0,duration:.22,ease:'power2.in',onComplete:function(){
+      lb.style.display='none';
+      lb.setAttribute('aria-hidden','true');
+      lbImg.src='';
+    }});
+  }
+  if(lbClose)lbClose.addEventListener('click',closeLb);
+  lb.addEventListener('click',function(e){if(e.target===lb)closeLb();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.style.display==='flex')closeLb();});
 }
 
 /* ── INIT ── */
