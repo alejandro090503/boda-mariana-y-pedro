@@ -107,15 +107,15 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .cd-unit{display:flex;flex-direction:column;align-items:center;padding:0 clamp(10px,4vw,22px)}
 .cd-value{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,11vw,54px);font-weight:400;color:var(--dark);line-height:1;letter-spacing:-1px;transition:transform .15s,opacity .15s}
 .cd-value.flip{transform:translateY(-8px);opacity:0}
-.cd-lbl{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:16px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-top:6px}
+.cd-lbl{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:16px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-top:6px}
 .cd-sep{display:flex;flex-direction:column;gap:6px;padding-bottom:20px;opacity:.3}
-.cd-dot{width:3px;height:3px;background:var(--gold);border-radius:50%}
+.cd-dot{width:3px;height:3px;background:var(--sage);border-radius:50%}
 
 /* ── FAMILIARES ── */
 .fam-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
 .fam-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px 14px;text-align:center;position:relative}
 .fam-card::before{content:'';position:absolute;inset:8px;border:1px solid var(--border-light);pointer-events:none}
-.fam-role-lbl{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:15px;letter-spacing:.05em;color:var(--gold);display:block;margin-bottom:12px}
+.fam-role-lbl{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:15px;letter-spacing:.05em;color:var(--sage);display:block;margin-bottom:12px}
 .fam-name{font-family:'Great Vibes',cursive;font-size:26px;color:var(--dark);line-height:1.3;display:block}
 .fam-and{display:flex;align-items:center;gap:8px;margin:6px 0}
 .fam-and-line{flex:1;height:1px;background:var(--border)}
@@ -126,7 +126,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .padrino-row{padding:14px 0;border-bottom:1px solid var(--border-light);text-align:center}
 .padrino-row:first-child{padding-top:0}
 .padrino-row:last-child{border-bottom:none;padding-bottom:0}
-.padrino-role{font-family:'Italiana',serif;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.padrino-role{font-family:'Italiana',serif;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--sage);display:flex;align-items:center;justify-content:center;margin-bottom:6px}
 .padrino-names{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--dark);line-height:1.55;font-weight:400;display:block}
 
 /* ── UBICACION ── */
@@ -162,11 +162,11 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .itv3-item:last-child{padding-bottom:10px}
 
 /* ── GALERÍA / WHEEL ── */
-.wheel-stage{position:relative;width:100%;height:min(480px,108vw);max-width:480px;margin:0 auto;display:flex;align-items:center;justify-content:center}
-.wheel{position:relative;width:min(420px,92vw);height:min(420px,92vw);border-radius:50%}
-.wheel-spoke{position:absolute;inset:-2px;border-radius:50%;border:1px solid rgba(139,58,80,.22)}
-.wheel-spoke--inner{inset:min(90px,18%);border-style:dashed;opacity:.42}
-.wheel-item{position:absolute;--r:min(185px,40vw);--angle:calc(var(--i)*(360deg/12));left:50%;top:50%;width:min(170px,36vw);height:min(220px,47vw);margin-left:calc(min(170px,36vw)/-2);margin-top:calc(min(220px,47vw)/-2);transform:rotate(var(--angle)) translateY(calc(-1*var(--r))) rotate(calc(-1*var(--angle)));border-radius:6px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.2),0 1px 4px rgba(0,0,0,.1)}
+.wheel-stage{position:relative;width:100%;height:min(500px,112vw);max-width:500px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+.wheel{position:relative;width:min(440px,96vw);height:min(440px,96vw);border-radius:50%}
+.wheel-spoke{position:absolute;inset:-2px;border-radius:50%;border:1px solid rgba(125,155,118,.28)}
+.wheel-spoke--inner{inset:min(90px,18%);border-style:dashed;border-color:rgba(125,155,118,.18);opacity:.55}
+.wheel-item{position:absolute;--r:min(195px,43vw);--angle:calc(var(--i)*(360deg/8));left:50%;top:50%;width:min(150px,33vw);height:min(200px,44vw);margin-left:calc(min(150px,33vw)/-2);margin-top:calc(min(200px,44vw)/-2);transform:rotate(var(--angle)) translateY(calc(-1*var(--r))) rotate(calc(-1*var(--angle)));border-radius:6px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.2),0 1px 4px rgba(0,0,0,.1)}
 .wheel-item-inner{position:relative;width:100%;height:100%;cursor:zoom-in}
 .wheel-item-inner img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .6s ease}
 .wheel-item-inner:hover img{transform:scale(1.06)}
@@ -216,10 +216,8 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .hotel-carousel::before,.hotel-carousel::after{content:'';position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none}
 .hotel-carousel::before{left:0;background:linear-gradient(to right,var(--card),transparent)}
 .hotel-carousel::after{right:0;background:linear-gradient(to left,var(--card),transparent)}
-.hotel-carousel-track{display:flex;gap:3px;height:100%;animation:hotelScroll 22s linear infinite;width:max-content;will-change:transform}
-.hotel-carousel-track:hover{animation-play-state:paused}
+.hotel-carousel-track{display:flex;gap:3px;height:100%;width:max-content;will-change:transform}
 .hotel-carousel-track img{height:100%;width:auto;min-width:160px;max-width:260px;object-fit:cover;flex-shrink:0;display:block;pointer-events:none;user-select:none}
-@keyframes hotelScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .hotel-card-body{padding:18px 22px 24px}
 .hotel-name{font-family:'Great Vibes',cursive;font-size:32px;color:var(--dark);display:block;margin-bottom:14px;line-height:1.2}
 .hotel-btns{display:flex;gap:10px;flex-direction:column}
@@ -253,16 +251,19 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .footer-credit:hover{color:var(--gold-light)}
 
 /* ── SECTION DISSOLVE (todas las secciones) ── */
-/* var(--bg) en TODAS: crea degradado claro visible en el borde superior/inferior
-   de cada sección sin importar su fondo propio */
-.sec::before,.sec::after,.sec-sm::before,.sec-sm::after{content:'';position:absolute;left:0;right:0;height:80px;pointer-events:none;z-index:4}
-.sec::before,.sec-sm::before{top:0;background:linear-gradient(to bottom,var(--bg) 0%,transparent 100%)}
-.sec::after,.sec-sm::after{bottom:0;background:linear-gradient(to top,var(--bg) 0%,transparent 100%)}
+/* var(--surface) crea contraste visible sobre fondos bg Y surface;
+   bg-on-surface era invisible, ahora surface-on-bg crea borde cálido perceptible */
+.sec::before,.sec::after,.sec-sm::before,.sec-sm::after{content:'';position:absolute;left:0;right:0;height:90px;pointer-events:none;z-index:4}
+.sec::before,.sec-sm::before{top:0;background:linear-gradient(to bottom,var(--surface) 0%,transparent 100%)}
+.sec::after,.sec-sm::after{bottom:0;background:linear-gradient(to top,var(--surface) 0%,transparent 100%)}
+/* secciones oscuras: dissolve con bg claro */
+#regalos::before{background:linear-gradient(to bottom,var(--bg),transparent)}
+#regalos::after{background:linear-gradient(to top,var(--bg),transparent)}
 /* hero bottom */
-#hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:100px;pointer-events:none;z-index:4;background:linear-gradient(to top,var(--bg) 0%,transparent 100%)}
+#hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:110px;pointer-events:none;z-index:4;background:linear-gradient(to top,var(--bg) 0%,transparent 100%)}
 /* footer top */
 #footer{position:relative}
-#footer::before{content:'';position:absolute;left:0;right:0;top:0;height:80px;pointer-events:none;z-index:4;background:linear-gradient(to bottom,var(--bg) 0%,transparent 100%)}
+#footer::before{content:'';position:absolute;left:0;right:0;top:0;height:90px;pointer-events:none;z-index:4;background:linear-gradient(to bottom,var(--surface) 0%,transparent 100%)}
 
 /* ── MUSIC (vinyl) ── */
 .vinyl-btn{position:fixed;bottom:20px;right:20px;z-index:998;width:72px;height:72px;border-radius:50%;padding:0;border:none;cursor:pointer;background:transparent;opacity:0;transform:scale(.6);pointer-events:none;transition:opacity .4s ease,transform .35s cubic-bezier(.2,.7,.2,1);box-shadow:0 4px 18px rgba(0,0,0,.45),0 0 0 1px rgba(139,58,80,.15)}
@@ -380,7 +381,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 
   <!-- NUESTRAS FAMILIAS -->
   <section class="sec rv" style="text-align:center">
-    <span class="eyebrow">Con la bendición de</span>
+    <span class="eyebrow" style="color:var(--sage)">Con la bendición de</span>
     <h2 class="heading-sm">Nuestras Familias</h2>
     <div class="orn" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
     <div class="fam-grid rv">
@@ -471,7 +472,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 
   <!-- ITINERARIO V3 -->
   <section id="siti" class="sec" style="text-align:center">
-    <span class="eyebrow rv">Programa del Día</span>
+    <span class="eyebrow rv" style="color:var(--sage)">Programa del Día</span>
     <h2 class="heading-sm rv">Itinerario</h2>
     <div class="orn rv" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
     <div class="itv3">
@@ -576,17 +577,17 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
     <div class="hotel-cards rv">
       <div class="hotel-card">
         <div class="hotel-carousel">
-          <div class="hotel-carousel-track">
-            <img src="hotels/hacienda-1.jpg" alt="Hotel Hacienda del Sol" loading="lazy">
-            <img src="hotels/hacienda-4.jpg" alt="Hotel Hacienda del Sol" loading="lazy">
-            <img src="hotels/hacienda-2.jpg" alt="Hotel Hacienda del Sol" loading="lazy">
-            <img src="hotels/hacienda-3.jpg" alt="Hotel Hacienda del Sol" loading="lazy">
-            <img src="hotels/hacienda-5.jpg" alt="Hotel Hacienda del Sol" loading="lazy">
-            <img src="hotels/hacienda-1.jpg" alt="" aria-hidden="true" loading="lazy">
-            <img src="hotels/hacienda-4.jpg" alt="" aria-hidden="true" loading="lazy">
-            <img src="hotels/hacienda-2.jpg" alt="" aria-hidden="true" loading="lazy">
-            <img src="hotels/hacienda-3.jpg" alt="" aria-hidden="true" loading="lazy">
-            <img src="hotels/hacienda-5.jpg" alt="" aria-hidden="true" loading="lazy">
+          <div class="hotel-carousel-track" id="haciendaTrack">
+            <img src="hotels/hacienda-1.jpg" alt="Hotel Hacienda del Sol" draggable="false">
+            <img src="hotels/hacienda-4.jpg" alt="Hotel Hacienda del Sol" draggable="false">
+            <img src="hotels/hacienda-2.jpg" alt="Hotel Hacienda del Sol" draggable="false">
+            <img src="hotels/hacienda-3.jpg" alt="Hotel Hacienda del Sol" draggable="false">
+            <img src="hotels/hacienda-5.jpg" alt="Hotel Hacienda del Sol" draggable="false">
+            <img src="hotels/hacienda-1.jpg" alt="" aria-hidden="true" draggable="false">
+            <img src="hotels/hacienda-4.jpg" alt="" aria-hidden="true" draggable="false">
+            <img src="hotels/hacienda-2.jpg" alt="" aria-hidden="true" draggable="false">
+            <img src="hotels/hacienda-3.jpg" alt="" aria-hidden="true" draggable="false">
+            <img src="hotels/hacienda-5.jpg" alt="" aria-hidden="true" draggable="false">
           </div>
         </div>
         <div class="hotel-card-body">
@@ -605,19 +606,19 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
       </div>
       <div class="hotel-card">
         <div class="hotel-carousel">
-          <div class="hotel-carousel-track">
-            <img src="hotels/palomas-extra.jpg" alt="Casa de las Palomas" loading="lazy">
-            <img src="hotels/palomas-5.jpg" alt="Casa de las Palomas" loading="lazy">
-            <img src="hotels/palomas-1.jpg" alt="Casa de las Palomas" loading="lazy">
-            <img src="hotels/palomas-2.jpg" alt="Casa de las Palomas" loading="lazy">
-            <img src="hotels/palomas-3.jpg" alt="Casa de las Palomas" loading="lazy">
-            <img src="hotels/palomas-4.jpg" alt="Casa de las Palomas" loading="lazy">
-            <img src="hotels/palomas-extra.jpg" alt="" aria-hidden="true" loading="lazy">
-            <img src="hotels/palomas-5.jpg" alt="" aria-hidden="true" loading="lazy">
-            <img src="hotels/palomas-1.jpg" alt="" aria-hidden="true" loading="lazy">
-            <img src="hotels/palomas-2.jpg" alt="" aria-hidden="true" loading="lazy">
-            <img src="hotels/palomas-3.jpg" alt="" aria-hidden="true" loading="lazy">
-            <img src="hotels/palomas-4.jpg" alt="" aria-hidden="true" loading="lazy">
+          <div class="hotel-carousel-track" id="palomasTrack">
+            <img src="hotels/palomas-extra.jpg" alt="Casa de las Palomas" draggable="false">
+            <img src="hotels/palomas-5.jpg" alt="Casa de las Palomas" draggable="false">
+            <img src="hotels/palomas-1.jpg" alt="Casa de las Palomas" draggable="false">
+            <img src="hotels/palomas-2.jpg" alt="Casa de las Palomas" draggable="false">
+            <img src="hotels/palomas-3.jpg" alt="Casa de las Palomas" draggable="false">
+            <img src="hotels/palomas-4.jpg" alt="Casa de las Palomas" draggable="false">
+            <img src="hotels/palomas-extra.jpg" alt="" aria-hidden="true" draggable="false">
+            <img src="hotels/palomas-5.jpg" alt="" aria-hidden="true" draggable="false">
+            <img src="hotels/palomas-1.jpg" alt="" aria-hidden="true" draggable="false">
+            <img src="hotels/palomas-2.jpg" alt="" aria-hidden="true" draggable="false">
+            <img src="hotels/palomas-3.jpg" alt="" aria-hidden="true" draggable="false">
+            <img src="hotels/palomas-4.jpg" alt="" aria-hidden="true" draggable="false">
           </div>
         </div>
         <div class="hotel-card-body">
@@ -639,7 +640,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 
   <!-- ÁLBUM -->
   <section id="salbum" class="sec" style="text-align:center">
-    <span class="eyebrow rv">Nuestros Momentos</span>
+    <span class="eyebrow rv" style="color:var(--sage)">Nuestros Momentos</span>
     <h2 class="heading-sm rv">Álbum</h2>
     <div class="orn rv" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
     <div class="wheel-stage">
@@ -647,8 +648,14 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
       <div class="wheel" id="wheel">
         <span class="wheel-spoke" aria-hidden="true"></span>
         <span class="wheel-spoke wheel-spoke--inner" aria-hidden="true"></span>
-        <div class="wheel-item" style="--i:0"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778705444229-5.jpg" alt="Mariana y Pedro" loading="lazy"></div></div>
-        <div class="wheel-item" style="--i:6"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778710861331-2.jpg" alt="Mariana y Pedro" loading="lazy"></div></div>
+        <div class="wheel-item" style="--i:0"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778705444229-5.jpg" alt="Mariana y Pedro"></div></div>
+        <div class="wheel-item" style="--i:1"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778710861331-2.jpg" alt="Mariana y Pedro"></div></div>
+        <div class="wheel-item" style="--i:2"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778705444229-5.jpg" alt="Mariana y Pedro"></div></div>
+        <div class="wheel-item" style="--i:3"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778710861331-2.jpg" alt="Mariana y Pedro"></div></div>
+        <div class="wheel-item" style="--i:4"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778705444229-5.jpg" alt="Mariana y Pedro"></div></div>
+        <div class="wheel-item" style="--i:5"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778710861331-2.jpg" alt="Mariana y Pedro"></div></div>
+        <div class="wheel-item" style="--i:6"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778705444229-5.jpg" alt="Mariana y Pedro"></div></div>
+        <div class="wheel-item" style="--i:7"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778710861331-2.jpg" alt="Mariana y Pedro"></div></div>
       </div>
       <div class="wheel-hub" aria-hidden="true">
         <svg viewBox="0 0 60 60" fill="none"><g stroke="currentColor" stroke-width=".8"><circle cx="30" cy="30" r="18" opacity=".4"/><circle cx="30" cy="30" r="10"/><circle cx="30" cy="30" r="3" fill="currentColor"/><path d="M30 14L30 20M30 40L30 46M14 30L20 30M40 30L46 30" opacity=".55"/></g></svg>
@@ -815,6 +822,7 @@ function launchPetals(){
 function initMain(){
   window.scrollTo(0,0);
   launchPetals();
+  initHotelCarousels();
   initItinerary();
   initWheel();
 
@@ -941,82 +949,89 @@ function initItinerary(){
   });
 }
 
+/* ── HOTEL CAROUSELS ── */
+function initHotelCarousels(){
+  document.querySelectorAll('.hotel-carousel').forEach(function(carousel){
+    var track=carousel.querySelector('.hotel-carousel-track');
+    if(!track)return;
+    track.style.animation='none';
+    var origImgs=Array.from(track.querySelectorAll('img:not([aria-hidden])'));
+    var allImgs=Array.from(track.querySelectorAll('img'));
+    var loaded=0,total=allImgs.length,started=false;
+    function startAnim(){
+      if(started)return;started=true;
+      var halfW=0;
+      origImgs.forEach(function(img){halfW+=img.offsetWidth+3;});
+      if(halfW<10){started=false;return;}
+      gsap.fromTo(track,{x:0},{x:-halfW,duration:22,ease:'none',repeat:-1});
+    }
+    function onLoad(){loaded++;if(loaded>=total)startAnim();}
+    allImgs.forEach(function(img){
+      if(img.complete&&img.naturalWidth>0){onLoad();}
+      else{img.addEventListener('load',onLoad,{once:true});img.addEventListener('error',onLoad,{once:true});}
+    });
+    setTimeout(function(){if(!started)startAnim();},2500);
+  });
+}
+
 /* ── WHEEL + LIGHTBOX ── */
 function initWheel(){
   var wheel=document.getElementById('wheel');
   var sparkLayer=document.getElementById('wheel-spark-layer');
   if(!wheel)return;
 
-  ScrollTrigger.create({
-    trigger:'#salbum',
-    start:'top bottom',
-    end:'bottom top',
-    scrub:1.8,
-    onUpdate:function(self){
-      var deg=self.progress*360;
-      gsap.set(wheel,{rotation:deg});
-      document.querySelectorAll('.wheel-item-inner').forEach(function(inner){
-        gsap.set(inner,{rotation:-deg});
-      });
-    }
+  /* GSAP timeline con scrub — no onUpdate manual, no jank */
+  var tl=gsap.timeline({
+    scrollTrigger:{trigger:'#salbum',start:'top bottom',end:'bottom top',scrub:2}
+  });
+  tl.to(wheel,{rotation:360,ease:'none'},0);
+  wheel.querySelectorAll('.wheel-item-inner').forEach(function(inner){
+    tl.to(inner,{rotation:-360,ease:'none'},0);
   });
 
+  /* Sparks en scroll rápido */
   function spawnSpark(){
     if(!sparkLayer)return;
     var sp=document.createElement('div');
     sp.className='wheel-spark';
     var angle=Math.random()*Math.PI*2;
-    var dist=80+Math.random()*100;
+    var dist=80+Math.random()*110;
     var sz=3+Math.random()*5;
-    var colors=['rgba(212,168,168,.9)','rgba(139,58,80,.8)','rgba(125,155,118,.8)','rgba(246,238,224,.85)'];
+    var colors=['rgba(212,168,168,.9)','rgba(139,58,80,.8)','rgba(125,155,118,.85)','rgba(246,238,224,.85)'];
     var color=colors[Math.floor(Math.random()*colors.length)];
     sp.style.cssText='width:'+sz+'px;height:'+sz+'px;background:'+color+';border-radius:50%;position:absolute;left:50%;top:50%;margin-left:'+(sz/-2)+'px;margin-top:'+(sz/-2)+'px';
     sparkLayer.appendChild(sp);
-    gsap.fromTo(sp,
-      {opacity:1,x:0,y:0,scale:1},
-      {opacity:0,x:Math.cos(angle)*dist,y:Math.sin(angle)*dist,scale:.2,
-       duration:.65+Math.random()*.45,ease:'power2.out',
-       onComplete:function(){if(sp.parentNode)sp.parentNode.removeChild(sp);}}
-    );
+    gsap.fromTo(sp,{opacity:1,x:0,y:0,scale:1},{opacity:0,x:Math.cos(angle)*dist,y:Math.sin(angle)*dist,scale:.2,
+      duration:.65+Math.random()*.45,ease:'power2.out',
+      onComplete:function(){if(sp.parentNode)sp.parentNode.removeChild(sp);}});
   }
-
   ScrollTrigger.create({
-    trigger:'#salbum',
-    start:'top bottom',
-    end:'bottom top',
+    trigger:'#salbum',start:'top bottom',end:'bottom top',
     onUpdate:function(self){
       var vel=Math.abs(self.getVelocity());
-      if(vel>200){
-        var n=Math.min(4,Math.floor(vel/200));
-        for(var i=0;i<n;i++)spawnSpark();
-      }
+      if(vel>200){var n=Math.min(4,Math.floor(vel/200));for(var i=0;i<n;i++)spawnSpark();}
     }
   });
 
+  /* Lightbox */
   var lb=document.getElementById('lightbox');
   var lbImg=document.getElementById('lightbox-img');
   var lbClose=document.getElementById('lightbox-close');
   if(!lb)return;
-
-  document.querySelectorAll('.wheel-item-inner').forEach(function(inner){
+  wheel.querySelectorAll('.wheel-item-inner').forEach(function(inner){
     inner.addEventListener('click',function(){
       var img=inner.querySelector('img');
       if(!img)return;
-      lbImg.src=img.src;
-      lbImg.alt=img.alt||'';
-      lb.style.display='flex';
-      lb.removeAttribute('aria-hidden');
+      lbImg.src=img.src;lbImg.alt=img.alt||'';
+      lb.style.display='flex';lb.removeAttribute('aria-hidden');
       gsap.killTweensOf([lb,lbImg]);
       gsap.fromTo(lb,{opacity:0},{opacity:1,duration:.28,ease:'power2.out'});
       gsap.fromTo(lbImg,{opacity:0,scale:.88},{opacity:1,scale:1,duration:.32,ease:'back.out(1.4)',delay:.06});
     });
   });
-
   function closeLb(){
     gsap.to(lb,{opacity:0,duration:.22,ease:'power2.in',onComplete:function(){
-      lb.style.display='none';
-      lb.setAttribute('aria-hidden','true');
-      lbImg.src='';
+      lb.style.display='none';lb.setAttribute('aria-hidden','true');lbImg.src='';
     }});
   }
   if(lbClose)lbClose.addEventListener('click',closeLb);
