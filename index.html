@@ -38,14 +38,32 @@ html,body{overflow-x:hidden;max-width:100vw}
 html{scroll-behavior:auto}
 body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;font-weight:400;font-size:18px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
-/* ── ENVELOPE ── */
-#envelope-screen{position:fixed;inset:0;z-index:9000;background:#5A1E2C;overflow:hidden;cursor:pointer}
-#envImage,#envVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
-#envImage{opacity:0}
-#envVideo{opacity:0}
-.env-tap{position:absolute;bottom:72px;left:50%;transform:translateX(-50%);z-index:10;font-family:'Italiana',serif;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#F6EEE0;opacity:0;padding:16px 40px;white-space:nowrap;border:1px solid rgba(246,238,224,.45);border-radius:50px;background:rgba(90,30,44,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.env-tap::before{content:'';position:absolute;inset:0;border-radius:50px;animation:envpulse 2s ease-out infinite}
-@keyframes envpulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.28);opacity:0}}
+/* ── ENVELOPE (Animación iniciales) ── */
+#envelope-screen{position:fixed;inset:0;z-index:9000;background:radial-gradient(ellipse at 50% 47%,#6B2434 0%,#3D0D18 52%,#120610 100%);overflow:hidden;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#envelope-screen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 50% at 50% 44%,rgba(139,58,80,.28) 0%,transparent 72%);pointer-events:none;z-index:0}
+/* Corners */
+.env-corner{position:absolute;width:32px;height:32px;opacity:0;z-index:1}
+.env-corner--tl{top:22px;left:22px;border-top:1px solid rgba(212,168,168,.38);border-left:1px solid rgba(212,168,168,.38)}
+.env-corner--tr{top:22px;right:22px;border-top:1px solid rgba(212,168,168,.38);border-right:1px solid rgba(212,168,168,.38)}
+.env-corner--bl{bottom:22px;left:22px;border-bottom:1px solid rgba(212,168,168,.38);border-left:1px solid rgba(212,168,168,.38)}
+.env-corner--br{bottom:22px;right:22px;border-bottom:1px solid rgba(212,168,168,.38);border-right:1px solid rgba(212,168,168,.38)}
+.env-frame{position:absolute;inset:16px;border:1px solid rgba(212,168,168,.1);opacity:0;pointer-events:none;z-index:1}
+/* Content */
+.env-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 32px}
+.env-orn{display:flex;align-items:center;gap:12px;width:min(260px,68vw);margin:16px 0;opacity:0}
+.env-orn-line{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(125,155,118,.4),transparent)}
+.env-orn-diamond{width:4px;height:4px;background:rgba(125,155,118,.6);transform:rotate(45deg);flex-shrink:0}
+.env-orn-diamond--lg{width:7px;height:7px;background:rgba(125,155,118,.8)}
+/* Initials */
+.env-initials-row{display:flex;align-items:center;gap:2px;line-height:1}
+.env-initial{font-family:'Great Vibes',cursive;font-size:clamp(90px,25vw,152px);color:#FAF4EE;line-height:1;display:inline-block;text-shadow:0 4px 44px rgba(139,58,80,.55),0 0 90px rgba(212,168,168,.1);opacity:0}
+.env-sep{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:clamp(36px,10vw,56px);color:rgba(125,155,118,.88);display:inline-block;margin:0 10px;opacity:0;text-shadow:0 2px 24px rgba(125,155,118,.35)}
+.env-date{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:17px;letter-spacing:2px;color:rgba(212,168,168,.65);margin-top:14px;opacity:0}
+.env-city{font-family:'Italiana',serif;font-size:12px;letter-spacing:5px;text-transform:uppercase;color:rgba(125,155,118,.52);margin-top:7px;opacity:0}
+/* Tap */
+.env-tap{position:absolute;bottom:66px;left:50%;transform:translateX(-50%);z-index:10;font-family:'Italiana',serif;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#F6EEE0;opacity:0;padding:16px 40px;white-space:nowrap;border:1px solid rgba(246,238,224,.38);border-radius:50px;background:rgba(61,13,24,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.env-tap::before{content:'';position:absolute;inset:0;border-radius:50px;border:1px solid rgba(246,238,224,.45);animation:envpulse 2.2s ease-out infinite}
+@keyframes envpulse{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.36);opacity:0}}
 #env-flash{position:fixed;inset:0;z-index:9999;background:#F6EEE0;opacity:0;pointer-events:none}
 
 /* ── PARTICLES ── */
@@ -303,8 +321,34 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 <div id="petals"></div>
 
 <div id="envelope-screen">
-  <img id="envImage" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778705444229-5.jpg" alt="Invitación de boda Mariana y Pedro">
-  <video id="envVideo" src="apertura.mp4" muted playsinline preload="auto" poster="sobre.png"></video>
+  <div class="env-corner env-corner--tl" aria-hidden="true"></div>
+  <div class="env-corner env-corner--tr" aria-hidden="true"></div>
+  <div class="env-corner env-corner--bl" aria-hidden="true"></div>
+  <div class="env-corner env-corner--br" aria-hidden="true"></div>
+  <div class="env-frame" aria-hidden="true"></div>
+  <div class="env-content">
+    <div class="env-orn env-orn--top" aria-hidden="true">
+      <div class="env-orn-line"></div>
+      <div class="env-orn-diamond"></div>
+      <div class="env-orn-diamond env-orn-diamond--lg"></div>
+      <div class="env-orn-diamond"></div>
+      <div class="env-orn-line"></div>
+    </div>
+    <div class="env-initials-row">
+      <span class="env-initial env-initial--m">M</span>
+      <span class="env-sep">&amp;</span>
+      <span class="env-initial env-initial--p">P</span>
+    </div>
+    <div class="env-orn env-orn--bot" aria-hidden="true">
+      <div class="env-orn-line"></div>
+      <div class="env-orn-diamond"></div>
+      <div class="env-orn-diamond env-orn-diamond--lg"></div>
+      <div class="env-orn-diamond"></div>
+      <div class="env-orn-line"></div>
+    </div>
+    <p class="env-date">Sábado · 11 de Julio de 2026</p>
+    <p class="env-city">Tonalá · Jalisco</p>
+  </div>
   <div class="env-tap" id="envTap">Toca para abrir</div>
 </div>
 
@@ -739,34 +783,33 @@ gsap.registerPlugin(ScrollTrigger);
 /* ── ENVELOPE ── */
 function initEnvelope(){
   var envScreen=document.getElementById('envelope-screen'),
-      envImage=document.getElementById('envImage'),
-      envVideo=document.getElementById('envVideo'),
-      envTap=document.getElementById('envTap'),
       envFlash=document.getElementById('env-flash'),
       mainWrap=document.querySelector('.wrap');
   var tapped=false;
-  gsap.fromTo(envImage,{opacity:0},{opacity:1,duration:1.4,ease:'power2.out'});
-  gsap.fromTo(envTap,{opacity:0,y:8},{opacity:1,y:0,duration:.9,delay:1.2,ease:'power2.out'});
+  var tl=gsap.timeline({defaults:{ease:'power2.out'}});
+  tl.to('.env-frame',{opacity:1,duration:.8},0)
+    .to('.env-corner',{opacity:1,duration:.5,stagger:.07},0.1)
+    .fromTo('.env-orn--top',{opacity:0,scaleX:0},{opacity:1,scaleX:1,duration:.7,transformOrigin:'center'},0.55)
+    .fromTo('.env-initial--m',{opacity:0,x:-35},{opacity:1,x:0,duration:.8},0.7)
+    .fromTo('.env-initial--p',{opacity:0,x:35},{opacity:1,x:0,duration:.8},0.8)
+    .fromTo('.env-sep',{opacity:0,scale:.5},{opacity:1,scale:1,duration:.55,ease:'back.out(2)'},1.05)
+    .fromTo('.env-orn--bot',{opacity:0,scaleX:0},{opacity:1,scaleX:1,duration:.7,transformOrigin:'center'},1.2)
+    .fromTo('.env-date',{opacity:0,y:10},{opacity:1,y:0,duration:.55},1.45)
+    .fromTo('.env-city',{opacity:0,y:8},{opacity:1,y:0,duration:.5},1.65)
+    .fromTo('#envTap',{opacity:0,y:12},{opacity:1,y:0,duration:.65},1.9);
+  tl.to('.env-initial',{textShadow:'0 4px 60px rgba(139,58,80,.75),0 0 100px rgba(212,168,168,.2)',duration:2,repeat:-1,yoyo:true,ease:'sine.inOut'},2.8);
   function onTap(e){
     if(tapped)return;tapped=true;e.preventDefault();
     if(typeof window._startAudio==='function')window._startAudio();
-    gsap.to(envTap,{opacity:0,duration:.3});
-    envVideo.src=envVideo.src;
-    envVideo.load();
-    var playProm=envVideo.play();
-    gsap.to(envImage,{opacity:0,duration:.35,delay:.1});
-    gsap.fromTo(envVideo,{opacity:0},{opacity:1,duration:.35,delay:.1});
-    function finish(){
-      gsap.to(envFlash,{opacity:1,duration:.18,ease:'power2.in',onComplete:function(){
-        envScreen.style.display='none';
-        mainWrap.style.visibility='visible';
-        gsap.to(envFlash,{opacity:0,duration:.35,delay:.05});
-        initMain();
-      }});
-    }
-    if(playProm!==undefined){playProm.catch(function(){});}
-    envVideo.addEventListener('ended',finish,{once:true});
-    setTimeout(finish,8000);
+    tl.kill();
+    gsap.to('.env-content',{opacity:0,duration:.25});
+    gsap.to('#envTap',{opacity:0,duration:.2});
+    gsap.to(envFlash,{opacity:1,duration:.2,delay:.18,ease:'power2.in',onComplete:function(){
+      envScreen.style.display='none';
+      mainWrap.style.visibility='visible';
+      gsap.to(envFlash,{opacity:0,duration:.35,delay:.05});
+      initMain();
+    }});
   }
   envScreen.addEventListener('click',onTap,{passive:false});
   envScreen.addEventListener('touchstart',onTap,{passive:false});
