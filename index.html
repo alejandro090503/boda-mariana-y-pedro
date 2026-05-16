@@ -73,7 +73,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 
 /* ── LAYOUT ── */
 .wrap{max-width:440px;margin:0 auto;overflow:hidden;position:relative;z-index:1;visibility:hidden}
-.rv{opacity:0}
+.rv{}
 .sec{padding:min(11vh,88px) 32px;position:relative}
 .sec-sm{padding:min(7vh,56px) 32px;position:relative}
 
@@ -909,11 +909,6 @@ function initMain(){
     if(!hintHidden&&window.scrollY>60){hintHidden=true;hint.classList.add('hidden');}
   },{passive:true});
 
-  /* Reveal animations */
-  gsap.utils.toArray('.rv').forEach(function(el){
-    gsap.fromTo(el,{opacity:0},{opacity:1,duration:.75,ease:'power2.out',
-      scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});
-  });
 
   /* RSVP — pases dinámicos */
   var rawPases=parseInt(new URLSearchParams(window.location.search).get('pases'));
