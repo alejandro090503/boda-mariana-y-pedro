@@ -376,7 +376,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
     <span class="eyebrow">Con la gracia de Dios</span>
     <div class="orn"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
     <h1 class="heading">Mariana y Pedro</h1>
-    <p class="sub" style="margin-top:8px;font-weight:600;color:var(--brown)">tienen el honor de invitarte a<br>su boda religiosa</p>
+    <p class="sub" id="invHonorTxt" style="margin-top:8px;font-weight:600;color:var(--brown)">Tienen el honor de invitarte a<br>su boda religiosa</p>
     <div class="orn bot"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
     <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--text);line-height:1.9;margin-top:26px;font-weight:400">
       Sábado, 11 de Julio de 2026<br>
@@ -914,7 +914,14 @@ function initMain(){
   var rsvpParams=new URLSearchParams(window.location.search);
   var rawPases=parseInt(rsvpParams.get('pases'));
   var urlPases=(!isNaN(rawPases)&&rawPases>=1&&rawPases<=5)?rawPases:1;
-  var rsvpPara=rsvpParams.get('para')||'Invitado';
+  var rsvpParaRaw=rsvpParams.get('para');
+  var rsvpPara=rsvpParaRaw||'Invitado';
+
+  /* Personalización del encabezado "Con la gracia de Dios" */
+  var honorEl=document.getElementById('invHonorTxt');
+  if(honorEl && rsvpParaRaw){
+    honorEl.innerHTML='Tienen el honor de invitarle a<br><span style="color:var(--accent);font-style:italic">'+rsvpParaRaw.replace(/</g,'&lt;')+'</span><br>a su boda religiosa';
+  }
 
   var note=document.getElementById('rsvpPasesNote');
   if(note){
