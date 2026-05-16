@@ -913,7 +913,7 @@ function initMain(){
   /* RSVP — pases dinámicos */
   var rsvpParams=new URLSearchParams(window.location.search);
   var rawPases=parseInt(rsvpParams.get('pases'));
-  var urlPases=(!isNaN(rawPases)&&rawPases>=1&&rawPases<=5)?rawPases:1;
+  var urlPases=(!isNaN(rawPases)&&rawPases>=1&&rawPases<=20)?rawPases:1;
   var rsvpParaRaw=rsvpParams.get('para');
   var rsvpPara=rsvpParaRaw||'Invitado';
 
