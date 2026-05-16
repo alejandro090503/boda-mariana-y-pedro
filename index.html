@@ -727,9 +727,9 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
         </div>
       </div>
       <button class="btn-wa" id="btnEnviar" onclick="sendRsvpWa()" style="margin-top:10px">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.997 2C6.477 2 2 6.477 2 12c0 1.99.589 3.845 1.6 5.4L2 22l4.73-1.578A9.956 9.956 0 0 0 12 22c5.52 0 10-4.477 10-10S17.52 2 11.997 2z"/></svg>
-        Confirmar por WhatsApp
+        Confirmar
       </button>
+      <p id="rsvpFeedback" style="display:none;text-align:center;margin-top:14px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--accent)"></p>
     </div>
   </section>
 
@@ -952,14 +952,29 @@ function initMain(){
   window.sendRsvpWa=function(){
     var inputs=document.querySelectorAll('.rsvp-name-input');
     var first=inputs[0]?inputs[0].value.trim():'';
-    if(!first){if(inputs[0])inputs[0].focus();return;}
-    if(!window.rsvpChoice){document.getElementById('btnYes').focus();return;}
-    var names=Array.from(inputs).map(function(i){return i.value.trim();}).filter(function(n){return n;});
+    var btn=document.getElementById('btnEnviar');
+    var feedback=document.getElementById('rsvpFeedback');
 
-    /* 1) Registrar en el panel de invitados */
+    if(!window.rsvpChoice){
+      document.getElementById('btnYes').focus();
+      if(feedback){feedback.style.display='block';feedback.style.color='#b08d57';feedback.textContent='Selecciona si asistirás o no.';}
+      return;
+    }
+    if(window.rsvpChoice==='yes' && !first){
+      if(inputs[0])inputs[0].focus();
+      if(feedback){feedback.style.display='block';feedback.style.color='#b08d57';feedback.textContent='Escribe al menos un nombre para confirmar.';}
+      return;
+    }
+
+    var names=Array.from(inputs).map(function(i){return i.value.trim();}).filter(function(n){return n;});
     var estado = window.rsvpChoice==='yes' ? 'confirmado' : 'declino';
     var pasesConf = window.rsvpChoice==='yes' ? names.length : 0;
     var nombresConf = window.rsvpChoice==='yes' ? names : [];
+
+    btn.disabled=true;
+    btn.textContent='Enviando…';
+    if(feedback){feedback.style.display='none';}
+
     fetch('https://panel-invitados.vercel.app/api/confirmar', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
@@ -970,20 +985,30 @@ function initMain(){
         nombres_confirmados: nombresConf,
         url_boda:            'https://boda-mariana-y-pedro.vercel.app'
       })
-    }).catch(function(){ /* silencioso — no bloquea WhatsApp */ });
-
-    /* 2) Abrir WhatsApp */
-    var msg='';
-    if(window.rsvpChoice==='yes'){
-      msg='¡Hola! Con mucho gusto confirmo mi asistencia a la celebración de Mariana Lopez Medrano y Pedro Enrique Lopez Lopez. 🎉\n';
-      msg+='✅ Asistiré con '+urlPases+' pase'+(urlPases>1?'s':'')+'.\n';
-      msg+='Mis acompañantes:\n';
-      names.forEach(function(n,i){msg+=(i+1)+'. '+n+'\n';});
-      msg+='¡Nos vemos pronto! 💫';
-    }else{
-      msg='¡Hola! Soy '+first+'. Lamentablemente no podré asistir a la celebración de Mariana Lopez Medrano y Pedro Enrique Lopez Lopez.';
-    }
-    window.open('https://wa.me/523781196994?text='+encodeURIComponent(msg),'_blank');
+    })
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d && d.ok){
+        btn.textContent = estado==='confirmado' ? '¡Confirmado! ✦' : 'Respuesta enviada ✦';
+        if(feedback){
+          feedback.style.display='block';
+          feedback.style.color='var(--accent)';
+          feedback.textContent = estado==='confirmado'
+            ? '¡Gracias por confirmar! Los novios han sido notificados.'
+            : 'Gracias por avisarnos. Los novios han sido notificados.';
+        }
+        inputs.forEach(function(i){i.disabled=true;});
+      } else {
+        btn.disabled=false;
+        btn.textContent='Confirmar';
+        if(feedback){feedback.style.display='block';feedback.style.color='#b91c1c';feedback.textContent='Hubo un problema al enviar. Intenta de nuevo.';}
+      }
+    })
+    .catch(function(){
+      btn.disabled=false;
+      btn.textContent='Confirmar';
+      if(feedback){feedback.style.display='block';feedback.style.color='#b91c1c';feedback.textContent='Sin conexión. Verifica tu internet e intenta de nuevo.';}
+    });
   };
 }
 
