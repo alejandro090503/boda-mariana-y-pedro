@@ -911,8 +911,10 @@ function initMain(){
 
 
   /* RSVP — pases dinámicos */
-  var rawPases=parseInt(new URLSearchParams(window.location.search).get('pases'));
+  var rsvpParams=new URLSearchParams(window.location.search);
+  var rawPases=parseInt(rsvpParams.get('pases'));
   var urlPases=(!isNaN(rawPases)&&rawPases>=1&&rawPases<=5)?rawPases:1;
+  var rsvpPara=rsvpParams.get('para')||'Invitado';
 
   var note=document.getElementById('rsvpPasesNote');
   if(note){
@@ -953,6 +955,24 @@ function initMain(){
     if(!first){if(inputs[0])inputs[0].focus();return;}
     if(!window.rsvpChoice){document.getElementById('btnYes').focus();return;}
     var names=Array.from(inputs).map(function(i){return i.value.trim();}).filter(function(n){return n;});
+
+    /* 1) Registrar en el panel de invitados */
+    var estado = window.rsvpChoice==='yes' ? 'confirmado' : 'declino';
+    var pasesConf = window.rsvpChoice==='yes' ? names.length : 0;
+    var nombresConf = window.rsvpChoice==='yes' ? names : [];
+    fetch('https://panel-invitados.vercel.app/api/confirmar', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        nombre:              rsvpPara,
+        estado:              estado,
+        pases_confirmados:   pasesConf,
+        nombres_confirmados: nombresConf,
+        url_boda:            'https://boda-mariana-y-pedro.vercel.app'
+      })
+    }).catch(function(){ /* silencioso — no bloquea WhatsApp */ });
+
+    /* 2) Abrir WhatsApp */
     var msg='';
     if(window.rsvpChoice==='yes'){
       msg='¡Hola! Con mucho gusto confirmo mi asistencia a la celebración de Mariana Lopez Medrano y Pedro Enrique Lopez Lopez. 🎉\n';
