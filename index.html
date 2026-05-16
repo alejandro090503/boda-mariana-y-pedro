@@ -41,7 +41,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 /* ── ENVELOPE ── */
 #envelope-screen{position:fixed;inset:0;z-index:9000;background:#0A0608;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center}
 #envImage{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:1}
-#envVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:1;opacity:0;pointer-events:none}
+#envVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:2;opacity:0;pointer-events:none}
 /* Corners */
 .env-corner{position:absolute;width:32px;height:32px;opacity:0;z-index:1}
 .env-corner--tl{top:22px;left:22px;border-top:1px solid rgba(125,155,118,.38);border-left:1px solid rgba(125,155,118,.38)}
@@ -288,18 +288,13 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .footer-credit{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:.5px;color:rgba(155,185,148,.5);text-decoration:none;display:block;transition:color .3s}
 .footer-credit:hover{color:var(--gold-light)}
 
-/* ── SECTION DISSOLVE (todas las secciones) ── */
-/* var(--surface) crea contraste visible sobre fondos bg Y surface;
-   bg-on-surface era invisible, ahora surface-on-bg crea borde cálido perceptible */
+/* ── SECTION DISSOLVE ── */
 .sec::before,.sec::after,.sec-sm::before,.sec-sm::after{content:'';position:absolute;left:0;right:0;height:90px;pointer-events:none;z-index:4}
-.sec::before,.sec-sm::before{top:0;background:linear-gradient(to bottom,var(--surface) 0%,transparent 100%)}
-.sec::after,.sec-sm::after{bottom:0;background:linear-gradient(to top,var(--surface) 0%,transparent 100%)}
+.sec::before,.sec-sm::before{top:0;background:none}
+.sec::after,.sec-sm::after{bottom:0;background:none}
 #cd-section{background:#DAE6D8}
-#cd-section::before{background:linear-gradient(to bottom,var(--bg) 0%,transparent 100%)}
-#cd-section::after{background:linear-gradient(to top,var(--bg) 0%,transparent 100%)}
-/* secciones oscuras: dissolve con bg claro */
-#regalos::before{background:linear-gradient(to bottom,var(--bg),transparent)}
-#regalos::after{background:linear-gradient(to top,var(--bg),transparent)}
+#cd-section::before{height:200px;background:linear-gradient(to bottom,var(--bg) 0%,transparent 100%)}
+#cd-section::after{height:200px;background:linear-gradient(to top,var(--bg) 0%,transparent 100%)}
 /* hero bottom */
 #hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:110px;pointer-events:none;z-index:4;background:linear-gradient(to top,var(--bg) 0%,transparent 100%)}
 /* footer top */
@@ -475,7 +470,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
   </section>
 
   <!-- UBICACIÓN -->
-  <section class="sec rv" style="text-align:center;background:var(--surface)">
+  <section class="sec rv" style="text-align:center">
     <span class="eyebrow">Dónde Celebramos</span>
     <h2 class="heading-sm">Ubicación</h2>
     <p class="sub" style="margin-top:6px;color:var(--gold);font-weight:600">Tonalá, Jalisco</p>
@@ -807,8 +802,7 @@ function initEnvelope(){
     gsap.to('#envTap',{opacity:0,duration:.3});
     envVideo.load();
     var playProm=envVideo.play();
-    gsap.to(envImage,{opacity:0,duration:.35,delay:.1});
-    gsap.fromTo(envVideo,{opacity:0},{opacity:1,duration:.35,delay:.1});
+    gsap.fromTo(envVideo,{opacity:0},{opacity:1,duration:.45,delay:.05});
     if(playProm!==undefined){playProm.catch(function(){finish();});}
     envVideo.addEventListener('ended',finish,{once:true});
     setTimeout(finish,12000);
