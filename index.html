@@ -910,12 +910,13 @@ function initMain(){
   },{passive:true});
 
 
-  /* RSVP — pases dinámicos */
+  /* RSVP — pases adultos + pases menores son independientes */
   var rsvpParams=new URLSearchParams(window.location.search);
   var rawPases=parseInt(rsvpParams.get('pases'));
   var urlPases=(!isNaN(rawPases)&&rawPases>=1&&rawPases<=20)?rawPases:1;
   var rawMenores=parseInt(rsvpParams.get('menores'));
-  var urlMenores=(!isNaN(rawMenores)&&rawMenores>=0&&rawMenores<=urlPases)?rawMenores:0;
+  var urlMenores=(!isNaN(rawMenores)&&rawMenores>=0&&rawMenores<=20)?rawMenores:0;
+  var rsvpTotal=urlPases+urlMenores;
   var rsvpParaRaw=rsvpParams.get('para');
   var rsvpPara=rsvpParaRaw||'Invitado';
 
@@ -927,42 +928,48 @@ function initMain(){
 
   var note=document.getElementById('rsvpPasesNote');
   if(note){
-    var txt=urlPases===1?'1 pase reservado para ti':urlPases+' pases reservados para ti';
-    note.textContent='✦ '+txt+' ✦';
+    var partes=[];
+    partes.push(urlPases===1?'1 pase':urlPases+' pases');
+    if(urlMenores>0){
+      partes.push(urlMenores===1?'1 menor':urlMenores+' menores');
+    }
+    note.textContent='✦ '+partes.join(' + ')+' reservado'+(rsvpTotal===1?'':'s')+' para ti ✦';
   }
 
-  function renderNameFields(count){
+  function renderNameFields(){
     var c=document.getElementById('namesContainer');
     c.innerHTML='';
-    var adultos = count - urlMenores; // # de slots para adultos (incluye al titular)
-    for(var i=1;i<=count;i++){
+    /* Primero todos los adultos, después todos los menores */
+    for(var i=1;i<=urlPases;i++){
       var div=document.createElement('div');
       div.className='rsvp-field';
       var lbl=document.createElement('label');
+      lbl.textContent = i===1 ? 'Tu nombre completo' : 'Acompañante '+(i-1);
       var inp=document.createElement('input');
       inp.type='text';
       inp.className='rsvp-name-input';
       inp.autocomplete='name';
-
-      if(i > adultos){
-        // Slot de menor
-        var menorIdx = i - adultos;
-        lbl.textContent = urlMenores === 1 ? 'Nombre del menor' : 'Nombre del menor ' + menorIdx;
-        inp.placeholder = 'Nombre y apellido del menor';
-      } else if(i === 1){
-        lbl.textContent = 'Tu nombre completo';
-        inp.placeholder = 'Nombre y apellido';
-      } else {
-        lbl.textContent = 'Acompañante ' + (i - 1);
-        inp.placeholder = 'Nombre y apellido';
-      }
-
+      inp.placeholder='Nombre y apellido';
       div.appendChild(lbl);
       div.appendChild(inp);
       c.appendChild(div);
     }
+    for(var j=1;j<=urlMenores;j++){
+      var divM=document.createElement('div');
+      divM.className='rsvp-field';
+      var lblM=document.createElement('label');
+      lblM.textContent = urlMenores===1 ? 'Nombre del menor' : 'Nombre del menor '+j;
+      var inpM=document.createElement('input');
+      inpM.type='text';
+      inpM.className='rsvp-name-input';
+      inpM.autocomplete='name';
+      inpM.placeholder='Nombre y apellido del menor';
+      divM.appendChild(lblM);
+      divM.appendChild(inpM);
+      c.appendChild(divM);
+    }
   }
-  renderNameFields(urlPases);
+  renderNameFields();
 
   window.rsvpChoice='';
   window.selectRsvp=function(choice){
