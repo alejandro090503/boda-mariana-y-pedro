@@ -914,6 +914,8 @@ function initMain(){
   var rsvpParams=new URLSearchParams(window.location.search);
   var rawPases=parseInt(rsvpParams.get('pases'));
   var urlPases=(!isNaN(rawPases)&&rawPases>=1&&rawPases<=20)?rawPases:1;
+  var rawMenores=parseInt(rsvpParams.get('menores'));
+  var urlMenores=(!isNaN(rawMenores)&&rawMenores>=0&&rawMenores<=urlPases)?rawMenores:0;
   var rsvpParaRaw=rsvpParams.get('para');
   var rsvpPara=rsvpParaRaw||'Invitado';
 
@@ -932,16 +934,29 @@ function initMain(){
   function renderNameFields(count){
     var c=document.getElementById('namesContainer');
     c.innerHTML='';
+    var adultos = count - urlMenores; // # de slots para adultos (incluye al titular)
     for(var i=1;i<=count;i++){
       var div=document.createElement('div');
       div.className='rsvp-field';
       var lbl=document.createElement('label');
-      lbl.textContent=i===1?'Tu nombre completo':'Acompañante '+(i-1);
       var inp=document.createElement('input');
       inp.type='text';
       inp.className='rsvp-name-input';
-      inp.placeholder='Nombre y apellido';
       inp.autocomplete='name';
+
+      if(i > adultos){
+        // Slot de menor
+        var menorIdx = i - adultos;
+        lbl.textContent = urlMenores === 1 ? 'Nombre del menor' : 'Nombre del menor ' + menorIdx;
+        inp.placeholder = 'Nombre y apellido del menor';
+      } else if(i === 1){
+        lbl.textContent = 'Tu nombre completo';
+        inp.placeholder = 'Nombre y apellido';
+      } else {
+        lbl.textContent = 'Acompañante ' + (i - 1);
+        inp.placeholder = 'Nombre y apellido';
+      }
+
       div.appendChild(lbl);
       div.appendChild(inp);
       c.appendChild(div);
