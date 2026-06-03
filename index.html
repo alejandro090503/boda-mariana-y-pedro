@@ -119,7 +119,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 
 /* ── HERO ── */
 #hero{position:relative;height:100vh;height:100dvh;min-height:620px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778705444229-5.jpg');background-size:cover;background-position:center;background-color:var(--surface)}
+.hero-bg{position:absolute;inset:0;background-image:url('hero.jpeg');background-size:cover;background-position:center 30%;background-color:var(--surface)}
 .hero-veil{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,8,14,.55) 0%,rgba(20,8,14,.35) 40%,rgba(20,8,14,.45) 75%,rgba(20,8,14,.65) 100%)}
 .hero-frame{position:absolute;inset:20px;border:1px solid rgba(246,238,224,.35);pointer-events:none}
 .hero-frame::before{content:'';position:absolute;inset:6px;border:1px solid rgba(246,238,224,.15)}
@@ -203,7 +203,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .wheel{position:relative;width:min(440px,96vw);height:min(440px,96vw);border-radius:50%}
 .wheel-spoke{position:absolute;inset:-2px;border-radius:50%;border:1px solid rgba(125,155,118,.28)}
 .wheel-spoke--inner{inset:min(90px,18%);border-style:dashed;border-color:rgba(125,155,118,.18);opacity:.55}
-.wheel-item{position:absolute;--r:min(195px,43vw);--angle:calc(var(--i)*(360deg/8));left:50%;top:50%;width:min(150px,33vw);height:min(200px,44vw);margin-left:calc(min(150px,33vw)/-2);margin-top:calc(min(200px,44vw)/-2);transform:rotate(var(--angle)) translateY(calc(-1*var(--r))) rotate(calc(-1*var(--angle)));border-radius:6px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.2),0 1px 4px rgba(0,0,0,.1)}
+.wheel-item{position:absolute;--r:min(195px,43vw);--angle:calc(var(--i)*(360deg/10));left:50%;top:50%;width:min(150px,33vw);height:min(200px,44vw);margin-left:calc(min(150px,33vw)/-2);margin-top:calc(min(200px,44vw)/-2);transform:rotate(var(--angle)) translateY(calc(-1*var(--r))) rotate(calc(-1*var(--angle)));border-radius:6px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.2),0 1px 4px rgba(0,0,0,.1)}
 .wheel-item-inner{position:relative;width:100%;height:100%;cursor:zoom-in}
 .wheel-item-inner img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .6s ease}
 .wheel-item-inner:hover img{transform:scale(1.06)}
@@ -383,7 +383,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
       <strong style="font-weight:600;color:var(--dark)">Tonalá, Jalisco</strong>
     </p>
     <div id="inv-photo-wrap">
-      <img id="inv-photo" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778710861331-2.jpg" alt="Mariana y Pedro">
+      <img id="inv-photo" src="inv.jpeg" alt="Mariana y Pedro">
       <div class="inv-frame" aria-hidden="true">
         <div class="inv-frame-border"></div>
         <span class="inv-fc inv-fc--tl"></span>
@@ -455,7 +455,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
         </div>
         <div class="padrino-row">
           <span class="padrino-role"><svg width="13" height="13" viewBox="0 0 22 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;margin-right:5px;opacity:.75"><ellipse cx="11" cy="15" rx="8" ry="2.5"/><path d="M3 10.5c0-1.38 3.58-2.5 8-2.5s8 1.12 8 2.5"/><path d="M3 6c0-1.38 3.58-2.5 8-2.5s8 1.12 8 2.5"/></svg>Arras</span>
-          <span class="padrino-names">José Luis López Medrano<br>y Esmeralda Lizeth de la Torre Orozco</span>
+          <span class="padrino-names">José Luis López Medrano<br>y Lizeth Esmeralda de la Torre Orozco</span>
         </div>
         <div class="padrino-row">
           <span class="padrino-role"><svg width="13" height="13" viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;margin-right:5px;opacity:.75"><path d="M2 7C2 4.5 4.5 3 7 4.5C9 5.7 9.5 8.3 11.5 9.5C14 11 17 9.5 17 7C17 4.5 14.5 3 12 4.5C10 5.7 9.5 8.3 7.5 9.5C5 11 2 9.5 2 7Z" transform="translate(2.5,0)"/></svg>Lazo</span>
@@ -553,7 +553,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
       </div>
       <div class="itv3-item">
         <div class="itv3-gem itv3-gem-sage"></div>
-        <div class="itv3-time">12:00 a.m.</div>
+        <div class="itv3-time">1:00 a.m.</div>
         <div class="itv3-ev">Final de la Fiesta</div>
       </div>
     </div>
@@ -691,14 +691,16 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
       <div class="wheel" id="wheel">
         <span class="wheel-spoke" aria-hidden="true"></span>
         <span class="wheel-spoke wheel-spoke--inner" aria-hidden="true"></span>
-        <div class="wheel-item" style="--i:0"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778705444229-5.jpg" alt="Mariana y Pedro"></div></div>
-        <div class="wheel-item" style="--i:1"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778710861331-2.jpg" alt="Mariana y Pedro"></div></div>
-        <div class="wheel-item" style="--i:2"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778705444229-5.jpg" alt="Mariana y Pedro"></div></div>
-        <div class="wheel-item" style="--i:3"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778710861331-2.jpg" alt="Mariana y Pedro"></div></div>
-        <div class="wheel-item" style="--i:4"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778705444229-5.jpg" alt="Mariana y Pedro"></div></div>
-        <div class="wheel-item" style="--i:5"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778710861331-2.jpg" alt="Mariana y Pedro"></div></div>
-        <div class="wheel-item" style="--i:6"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778705444229-5.jpg" alt="Mariana y Pedro"></div></div>
-        <div class="wheel-item" style="--i:7"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/5e126308-49df-4d43-ab9d-ccd25b87e38d/1778710861331-2.jpg" alt="Mariana y Pedro"></div></div>
+        <div class="wheel-item" style="--i:0"><div class="wheel-item-inner"><img src="g01.jpeg" alt="Mariana y Pedro" loading="lazy"></div></div>
+        <div class="wheel-item" style="--i:1"><div class="wheel-item-inner"><img src="g02.jpeg" alt="Mariana y Pedro" loading="lazy"></div></div>
+        <div class="wheel-item" style="--i:2"><div class="wheel-item-inner"><img src="g03.jpeg" alt="Mariana y Pedro" loading="lazy"></div></div>
+        <div class="wheel-item" style="--i:3"><div class="wheel-item-inner"><img src="g04.jpeg" alt="Mariana y Pedro" loading="lazy"></div></div>
+        <div class="wheel-item" style="--i:4"><div class="wheel-item-inner"><img src="g05.jpeg" alt="Mariana y Pedro" loading="lazy"></div></div>
+        <div class="wheel-item" style="--i:5"><div class="wheel-item-inner"><img src="g06.jpeg" alt="Mariana y Pedro" loading="lazy"></div></div>
+        <div class="wheel-item" style="--i:6"><div class="wheel-item-inner"><img src="g07.jpeg" alt="Mariana y Pedro" loading="lazy"></div></div>
+        <div class="wheel-item" style="--i:7"><div class="wheel-item-inner"><img src="g08.jpeg" alt="Mariana y Pedro" loading="lazy"></div></div>
+        <div class="wheel-item" style="--i:8"><div class="wheel-item-inner"><img src="g09.jpeg" alt="Mariana y Pedro" loading="lazy"></div></div>
+        <div class="wheel-item" style="--i:9"><div class="wheel-item-inner"><img src="g10.jpeg" alt="Mariana y Pedro" loading="lazy"></div></div>
       </div>
       <div class="wheel-hub" aria-hidden="true">
         <svg viewBox="0 0 60 60" fill="none"><g stroke="currentColor" stroke-width=".8"><circle cx="30" cy="30" r="18" opacity=".4"/><circle cx="30" cy="30" r="10"/><circle cx="30" cy="30" r="3" fill="currentColor"/><path d="M30 14L30 20M30 40L30 46M14 30L20 30M40 30L46 30" opacity=".55"/></g></svg>
